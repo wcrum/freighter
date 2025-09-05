@@ -13,8 +13,8 @@ import (
 	"github.com/opencontainers/go-digest"
 	"github.com/pkg/errors"
 
-	"hauler.dev/go/hauler/pkg/artifacts"
-	"hauler.dev/go/hauler/pkg/consts"
+	"freighter.dev/go/freighter/pkg/artifacts"
+	"freighter.dev/go/freighter/pkg/consts"
 )
 
 type directory struct {
@@ -26,7 +26,7 @@ func NewDirectory() *directory {
 }
 
 func (d directory) Open(ctx context.Context, u *url.URL) (io.ReadCloser, error) {
-	tmpfile, err := os.CreateTemp("", "hauler")
+	tmpfile, err := os.CreateTemp("", "freighter")
 	if err != nil {
 		return nil, err
 	}

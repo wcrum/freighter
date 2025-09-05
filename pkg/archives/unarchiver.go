@@ -8,8 +8,8 @@ import (
 	"path/filepath"
 	"strings"
 
+	"freighter.dev/go/freighter/pkg/log"
 	"github.com/mholt/archives"
-	"hauler.dev/go/hauler/pkg/log"
 )
 
 const (

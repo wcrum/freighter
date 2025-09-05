@@ -3,7 +3,7 @@ package v1alpha1
 import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	"hauler.dev/go/hauler/pkg/consts"
+	"freighter.dev/go/freighter/pkg/consts"
 )
 
 var (

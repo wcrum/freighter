@@ -7,17 +7,17 @@ import (
 
 	"oras.land/oras-go/pkg/content"
 
-	"hauler.dev/go/hauler/internal/flags"
-	"hauler.dev/go/hauler/pkg/cosign"
-	"hauler.dev/go/hauler/pkg/log"
-	"hauler.dev/go/hauler/pkg/store"
+	"freighter.dev/go/freighter/internal/flags"
+	"freighter.dev/go/freighter/pkg/cosign"
+	"freighter.dev/go/freighter/pkg/log"
+	"freighter.dev/go/freighter/pkg/store"
 )
 
 func CopyCmd(ctx context.Context, o *flags.CopyOpts, s *store.Layout, targetRef string, ro *flags.CliRootOpts) error {
 	l := log.FromContext(ctx)
 
 	if o.Username != "" || o.Password != "" {
-		return fmt.Errorf("--username/--password have been deprecated, please use 'hauler login'")
+		return fmt.Errorf("--username/--password have been deprecated, please use 'freighter login'")
 	}
 
 	components := strings.SplitN(targetRef, "://", 2)

@@ -5,7 +5,7 @@
 `Freighter` is a **community fork of [Rancher Government Hauler](https://hauler.dev)**, created and maintained by [William Crum](https://github.com/wcrum).  
 
 This project continues the mission of **simplifying the airgap experience** without requiring operators to adopt a specific workflow.  
-Like its upstream, `Freighter` represents assets (images, charts, files, etc.) as content and collections, allowing operators to easily fetch, store, package, and distribute them with declarative manifests or through the command line.
+Like its upstream, `Hauler` represents assets (images, charts, files, etc.) as content and collections, allowing operators to easily fetch, store, package, and distribute them with declarative manifests or through the command line.
 
 ### Disclaimer
 This is an **independent fork** of the original [Hauler](https://hauler.dev) project.  
@@ -15,7 +15,7 @@ It is **not affiliated with, endorsed by, or sponsored by Rancher Government Sol
 
 ## How Freighter Works
 
-`Freighter` builds on Hauler’s foundation by:
+`Freighter` builds on Hauler's foundation by:
 
 - Storing contents and collections as **OCI Artifacts**.  
 - Serving contents and collections with an **embedded registry and fileserver**.  
@@ -26,7 +26,7 @@ It is **not affiliated with, endorsed by, or sponsored by Rancher Government Sol
 ## Recent Changes
 
 This fork starts from **Hauler v1.2.0** and introduces ongoing modifications by William Crum.  
-Please refer to [CHANGELOG.md](./CHANGELOG.md) for specific differences between `Freighter` and upstream `Hauler`.
+Please refer to [CHANGELOG.md](./CHANGELOG.md) for specific differences between `Hauler` and upstream `Freighter`.
 
 ### Inherited from Hauler v1.2.0:
 
@@ -47,7 +47,7 @@ Please refer to [CHANGELOG.md](./CHANGELOG.md) for specific differences between 
     ```
 ---
 - Updated behavior of `store sync`:  
-  - Defaults to syncing a `manifest` named `hauler-manifest.yaml`.  
+  - Defaults to syncing a `manifest` named `freighter-manifest.yaml`.  
   - Requires `--filename/-f` to sync other manifest names.  
   - Supports multiple manifests with multiple flags.  
   - Example:  
@@ -55,7 +55,7 @@ Please refer to [CHANGELOG.md](./CHANGELOG.md) for specific differences between 
     freighter store sync --filename hauling-hauls-manifest.yaml
     ```
 ---
-For known limits, issues, and notices, see the [upstream Hauler documentation](https://docs.hauler.dev/docs/known-limits).  
+For known limits, issues, and notices, see the [upstream Hauler documentation](https://docs.freighter.dev/docs/known-limits).  
 Freighter-specific changes will be tracked separately.
 
 ---

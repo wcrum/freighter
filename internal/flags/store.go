@@ -6,10 +6,10 @@ import (
 	"os"
 	"path/filepath"
 
+	"freighter.dev/go/freighter/pkg/consts"
+	"freighter.dev/go/freighter/pkg/log"
+	"freighter.dev/go/freighter/pkg/store"
 	"github.com/spf13/cobra"
-	"hauler.dev/go/hauler/pkg/consts"
-	"hauler.dev/go/hauler/pkg/log"
-	"hauler.dev/go/hauler/pkg/store"
 )
 
 type StoreRootOpts struct {
@@ -29,7 +29,7 @@ func (o *StoreRootOpts) Store(ctx context.Context) (*store.Layout, error) {
 	storeDir := o.StoreDir
 
 	if storeDir == "" {
-		storeDir = os.Getenv(consts.HaulerStoreDir)
+		storeDir = os.Getenv(consts.FreighterStoreDir)
 	}
 
 	if storeDir == "" {

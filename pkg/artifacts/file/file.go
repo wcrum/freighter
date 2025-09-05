@@ -7,9 +7,9 @@ import (
 	"github.com/google/go-containerregistry/pkg/v1/partial"
 	gtypes "github.com/google/go-containerregistry/pkg/v1/types"
 
-	"hauler.dev/go/hauler/pkg/artifacts"
-	"hauler.dev/go/hauler/pkg/consts"
-	"hauler.dev/go/hauler/pkg/getter"
+	"freighter.dev/go/freighter/pkg/artifacts"
+	"freighter.dev/go/freighter/pkg/consts"
+	"freighter.dev/go/freighter/pkg/getter"
 )
 
 // interface guard

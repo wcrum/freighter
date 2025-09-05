@@ -8,7 +8,7 @@ import (
 	"github.com/google/go-containerregistry/pkg/v1/partial"
 	"github.com/google/go-containerregistry/pkg/v1/types"
 
-	"hauler.dev/go/hauler/pkg/consts"
+	"freighter.dev/go/freighter/pkg/consts"
 )
 
 var _ partial.Describable = (*marshallableConfig)(nil)

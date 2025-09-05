@@ -6,7 +6,7 @@ labels: 'bug'
 assignees: ''
 ---
 
-<!-- Thank you for helping us to improve Hauler! We welcome all bug reports. Please fill out each area of the template so we can better assist you. Comments like this will be hidden when you submit, but you can delete them if you wish. -->
+<!-- Thank you for helping us to improve Freighter! We welcome all bug reports. Please fill out each area of the template so we can better assist you. Comments like this will be hidden when you submit, but you can delete them if you wish. -->
 
 **Environmental Info:**
 
@@ -14,9 +14,9 @@ assignees: ''
 
 -
 
-**Hauler Version:**
+**Freighter Version:**
 
-<!-- Provide the output of "hauler version" -->
+<!-- Provide the output of "freighter version" -->
 
 -
 

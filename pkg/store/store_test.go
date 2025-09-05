@@ -8,8 +8,8 @@ import (
 	v1 "github.com/google/go-containerregistry/pkg/v1"
 	"github.com/google/go-containerregistry/pkg/v1/random"
 
-	"hauler.dev/go/hauler/pkg/artifacts"
-	"hauler.dev/go/hauler/pkg/store"
+	"freighter.dev/go/freighter/pkg/artifacts"
+	"freighter.dev/go/freighter/pkg/store"
 )
 
 var (
@@ -63,7 +63,7 @@ func TestLayout_AddOCI(t *testing.T) {
 }
 
 func setup(t *testing.T) func() error {
-	tempDir, err := os.MkdirTemp("", "hauler")
+	tempDir, err := os.MkdirTemp("", "freighter")
 	if err != nil {
 		t.Fatal(err)
 	}

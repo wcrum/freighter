@@ -17,10 +17,10 @@ import (
 	"github.com/google/go-containerregistry/pkg/v1/types"
 	imagev1 "github.com/opencontainers/image-spec/specs-go/v1"
 
-	"hauler.dev/go/hauler/internal/flags"
-	"hauler.dev/go/hauler/pkg/archives"
-	"hauler.dev/go/hauler/pkg/consts"
-	"hauler.dev/go/hauler/pkg/log"
+	"freighter.dev/go/freighter/internal/flags"
+	"freighter.dev/go/freighter/pkg/archives"
+	"freighter.dev/go/freighter/pkg/consts"
+	"freighter.dev/go/freighter/pkg/log"
 )
 
 // saves a content store to store archives

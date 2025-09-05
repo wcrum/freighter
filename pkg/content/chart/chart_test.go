@@ -9,12 +9,12 @@ import (
 	ocispec "github.com/opencontainers/image-spec/specs-go/v1"
 	"helm.sh/helm/v3/pkg/action"
 
-	"hauler.dev/go/hauler/pkg/consts"
-	"hauler.dev/go/hauler/pkg/content/chart"
+	"freighter.dev/go/freighter/pkg/consts"
+	"freighter.dev/go/freighter/pkg/content/chart"
 )
 
 func TestNewChart(t *testing.T) {
-	tempDir, err := os.MkdirTemp("", "hauler")
+	tempDir, err := os.MkdirTemp("", "freighter")
 	if err != nil {
 		t.Fatal(err)
 	}

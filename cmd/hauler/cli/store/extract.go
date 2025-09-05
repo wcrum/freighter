@@ -8,11 +8,11 @@ import (
 
 	ocispec "github.com/opencontainers/image-spec/specs-go/v1"
 
-	"hauler.dev/go/hauler/internal/flags"
-	"hauler.dev/go/hauler/internal/mapper"
-	"hauler.dev/go/hauler/pkg/log"
-	"hauler.dev/go/hauler/pkg/reference"
-	"hauler.dev/go/hauler/pkg/store"
+	"freighter.dev/go/freighter/internal/flags"
+	"freighter.dev/go/freighter/internal/mapper"
+	"freighter.dev/go/freighter/pkg/log"
+	"freighter.dev/go/freighter/pkg/reference"
+	"freighter.dev/go/freighter/pkg/store"
 )
 
 func ExtractCmd(ctx context.Context, o *flags.ExtractOpts, s *store.Layout, ref string) error {
@@ -62,7 +62,7 @@ func ExtractCmd(ctx context.Context, o *flags.ExtractOpts, s *store.Layout, ref 
 	}
 
 	if !found {
-		return fmt.Errorf("reference [%s] not found in store (hint: use `hauler store info` to list store contents)", ref)
+		return fmt.Errorf("reference [%s] not found in store (hint: use `freighter store info` to list store contents)", ref)
 	}
 
 	return nil

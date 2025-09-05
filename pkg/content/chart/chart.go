@@ -12,20 +12,20 @@ import (
 	"os"
 	"path/filepath"
 
+	"freighter.dev/go/freighter/pkg/artifacts"
+	"freighter.dev/go/freighter/pkg/log"
 	gv1 "github.com/google/go-containerregistry/pkg/v1"
 	"github.com/google/go-containerregistry/pkg/v1/partial"
 	gtypes "github.com/google/go-containerregistry/pkg/v1/types"
 	ocispec "github.com/opencontainers/image-spec/specs-go/v1"
-	"hauler.dev/go/hauler/pkg/artifacts"
-	"hauler.dev/go/hauler/pkg/log"
 	"helm.sh/helm/v3/pkg/action"
 	"helm.sh/helm/v3/pkg/chart"
 	"helm.sh/helm/v3/pkg/chart/loader"
 	"helm.sh/helm/v3/pkg/cli"
 	"helm.sh/helm/v3/pkg/registry"
 
-	"hauler.dev/go/hauler/pkg/consts"
-	"hauler.dev/go/hauler/pkg/layer"
+	"freighter.dev/go/freighter/pkg/consts"
+	"freighter.dev/go/freighter/pkg/layer"
 )
 
 var (

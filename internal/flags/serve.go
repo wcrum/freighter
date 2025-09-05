@@ -1,8 +1,8 @@
 package flags
 
 import (
+	"freighter.dev/go/freighter/pkg/consts"
 	"github.com/spf13/cobra"
-	"hauler.dev/go/hauler/pkg/consts"
 )
 
 type ServeRegistryOpts struct {

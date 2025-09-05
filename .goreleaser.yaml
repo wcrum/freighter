@@ -1,6 +1,6 @@
 version: 2
 
-project_name: hauler
+project_name: freighter
 before:
   hooks:
     - go mod tidy
@@ -14,11 +14,11 @@ release:
   make_latest: false
 
 env:
-  - vpkg=hauler.dev/go/hauler/internal/version
+  - vpkg=freighter.dev/go/freighter/internal/version
   - cosign_version=v2.2.3+carbide.3
 
 builds:
-  - dir: ./cmd/hauler/.
+  - dir: ./cmd/freighter/.
     goos:
       - linux
       - darwin
@@ -40,16 +40,16 @@ changelog:
   use: git
 
 brews:
-  - name: hauler
+  - name: freighter
     repository:
-      owner: hauler-dev
+      owner: freighter-dev
       name: homebrew-tap
       token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
     directory: Formula
-    description: "Hauler CLI"
+    description: "Freighter CLI"
 
 dockers:
-  - id: hauler-amd64
+  - id: freighter-amd64
     goos: linux
     goarch: amd64
     use: buildx
@@ -58,9 +58,9 @@ dockers:
       - "--platform=linux/amd64"
       - "--target=release"
     image_templates:
-      - "docker.io/hauler/hauler-amd64:{{ .Version }}"
-      - "ghcr.io/hauler-dev/hauler-amd64:{{ .Version }}"
-  - id: hauler-arm64
+      - "docker.io/freighter/freighter-amd64:{{ .Version }}"
+      - "ghcr.io/freighter-dev/freighter-amd64:{{ .Version }}"
+  - id: freighter-arm64
     goos: linux
     goarch: arm64
     use: buildx
@@ -69,9 +69,9 @@ dockers:
       - "--platform=linux/arm64"
       - "--target=release"
     image_templates:
-      - "docker.io/hauler/hauler-arm64:{{ .Version }}"
-      - "ghcr.io/hauler-dev/hauler-arm64:{{ .Version }}"
-  - id: hauler-debug-amd64
+      - "docker.io/freighter/freighter-arm64:{{ .Version }}"
+      - "ghcr.io/freighter-dev/freighter-arm64:{{ .Version }}"
+  - id: freighter-debug-amd64
     goos: linux
     goarch: amd64
     use: buildx

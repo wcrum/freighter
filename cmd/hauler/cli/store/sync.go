@@ -14,19 +14,19 @@ import (
 	"helm.sh/helm/v3/pkg/action"
 	"k8s.io/apimachinery/pkg/util/yaml"
 
-	"hauler.dev/go/hauler/internal/flags"
-	convert "hauler.dev/go/hauler/pkg/apis/hauler.cattle.io/convert"
-	v1 "hauler.dev/go/hauler/pkg/apis/hauler.cattle.io/v1"
-	v1alpha1 "hauler.dev/go/hauler/pkg/apis/hauler.cattle.io/v1alpha1"
-	tchart "hauler.dev/go/hauler/pkg/collection/chart"
-	"hauler.dev/go/hauler/pkg/collection/imagetxt"
-	"hauler.dev/go/hauler/pkg/consts"
-	"hauler.dev/go/hauler/pkg/content"
-	"hauler.dev/go/hauler/pkg/cosign"
-	"hauler.dev/go/hauler/pkg/getter"
-	"hauler.dev/go/hauler/pkg/log"
-	"hauler.dev/go/hauler/pkg/reference"
-	"hauler.dev/go/hauler/pkg/store"
+	"freighter.dev/go/freighter/internal/flags"
+	convert "freighter.dev/go/freighter/pkg/apis/freighter.cattle.io/convert"
+	v1 "freighter.dev/go/freighter/pkg/apis/freighter.cattle.io/v1"
+	v1alpha1 "freighter.dev/go/freighter/pkg/apis/freighter.cattle.io/v1alpha1"
+	tchart "freighter.dev/go/freighter/pkg/collection/chart"
+	"freighter.dev/go/freighter/pkg/collection/imagetxt"
+	"freighter.dev/go/freighter/pkg/consts"
+	"freighter.dev/go/freighter/pkg/content"
+	"freighter.dev/go/freighter/pkg/cosign"
+	"freighter.dev/go/freighter/pkg/getter"
+	"freighter.dev/go/freighter/pkg/log"
+	"freighter.dev/go/freighter/pkg/reference"
+	"freighter.dev/go/freighter/pkg/store"
 )
 
 func SyncCmd(ctx context.Context, o *flags.SyncOpts, s *store.Layout, rso *flags.StoreRootOpts, ro *flags.CliRootOpts) error {
@@ -35,10 +35,10 @@ func SyncCmd(ctx context.Context, o *flags.SyncOpts, s *store.Layout, rso *flags
 	tempOverride := o.TempOverride
 
 	if tempOverride == "" {
-		tempOverride = os.Getenv(consts.HaulerTempDir)
+		tempOverride = os.Getenv(consts.FreighterTempDir)
 	}
 
-	tempDir, err := os.MkdirTemp(tempOverride, consts.DefaultHaulerTempDirName)
+	tempDir, err := os.MkdirTemp(tempOverride, consts.DefaultFreighterTempDirName)
 	if err != nil {
 		return err
 	}
@@ -58,7 +58,7 @@ func SyncCmd(ctx context.Context, o *flags.SyncOpts, s *store.Layout, rso *flags
 			ProductRegistry = consts.CarbideRegistry
 		}
 
-		manifestLoc := fmt.Sprintf("%s/hauler/%s-manifest.yaml:%s", ProductRegistry, parts[0], tag)
+		manifestLoc := fmt.Sprintf("%s/freighter/%s-manifest.yaml:%s", ProductRegistry, parts[0], tag)
 		l.Infof("fetching product manifest from [%s]", manifestLoc)
 		img := v1.Image{
 			Name: manifestLoc,
@@ -67,7 +67,7 @@ func SyncCmd(ctx context.Context, o *flags.SyncOpts, s *store.Layout, rso *flags
 		if err != nil {
 			return err
 		}
-		err = ExtractCmd(ctx, &flags.ExtractOpts{StoreRootOpts: o.StoreRootOpts}, s, fmt.Sprintf("hauler/%s-manifest.yaml:%s", parts[0], tag))
+		err = ExtractCmd(ctx, &flags.ExtractOpts{StoreRootOpts: o.StoreRootOpts}, s, fmt.Sprintf("freighter/%s-manifest.yaml:%s", parts[0], tag))
 		if err != nil {
 			return err
 		}

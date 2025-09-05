@@ -1,8 +1,8 @@
 package flags
 
 import (
+	"freighter.dev/go/freighter/pkg/consts"
 	"github.com/spf13/cobra"
-	"hauler.dev/go/hauler/pkg/consts"
 )
 
 type SyncOpts struct {
@@ -25,7 +25,7 @@ type SyncOpts struct {
 func (o *SyncOpts) AddFlags(cmd *cobra.Command) {
 	f := cmd.Flags()
 
-	f.StringSliceVarP(&o.FileName, "filename", "f", []string{consts.DefaultHaulerManifestName}, "Specify the name of manifest(s) to sync")
+	f.StringSliceVarP(&o.FileName, "filename", "f", []string{consts.DefaultFreighterManifestName}, "Specify the name of manifest(s) to sync")
 	f.StringVarP(&o.Key, "key", "k", "", "(Optional) Location of public key to use for signature verification")
 	f.StringVar(&o.CertIdentity, "certificate-identity", "", "(Optional) Cosign certificate-identity (either --certificate-identity or --certificate-identity-regexp required for keyless verification)")
 	f.StringVar(&o.CertIdentityRegexp, "certificate-identity-regexp", "", "(Optional) Cosign certificate-identity-regexp (either --certificate-identity or --certificate-identity-regexp required for keyless verification)")

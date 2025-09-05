@@ -46,10 +46,10 @@ jobs:
         run: |
           make build-all
 
-      - name: Upload Hauler Binaries
+      - name: Upload Freighter Binaries
         uses: actions/upload-artifact@v4
         with:
-          name: hauler-binaries
+          name: freighter-binaries
           path: dist/*
 
       - name: Upload Coverage Report
@@ -83,157 +83,157 @@ jobs:
       - name: Download Artifacts
         uses: actions/download-artifact@v4
         with:
-          name: hauler-binaries
+          name: freighter-binaries
           path: dist
 
-      - name: Prepare Hauler for Tests
+      - name: Prepare Freighter for Tests
         run: |
           pwd
           ls -la
           ls -la dist/
           chmod -R 755 dist/ testdata/certificate-script.sh
-          sudo mv dist/hauler_linux_amd64_v1/hauler /usr/local/bin/hauler
+          sudo mv dist/freighter_linux_amd64_v1/freighter /usr/local/bin/freighter
           ./testdata/certificate-script.sh && sudo chown -R $(whoami) testdata/certs/
 
-      - name: Verify - hauler version
+      - name: Verify - freighter version
         run: |
-          hauler version
+          freighter version
 
-      - name: Verify - hauler completion
+      - name: Verify - freighter completion
         run: |
-          hauler completion
-          hauler completion bash
-          hauler completion fish
-          hauler completion powershell
-          hauler completion zsh
+          freighter completion
+          freighter completion bash
+          freighter completion fish
+          freighter completion powershell
+          freighter completion zsh
 
-      - name: Verify - hauler help
+      - name: Verify - freighter help
         run: |
-          hauler help
+          freighter help
 
-      - name: Verify - hauler login
+      - name: Verify - freighter login
         run: |
-          hauler login --help
-          hauler login docker.io --username ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }}
-          echo ${{ secrets.GITHUB_TOKEN }} | hauler login ghcr.io -u ${{ github.repository_owner }} --password-stdin
+          freighter login --help
+          freighter login docker.io --username ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }}
+          echo ${{ secrets.GITHUB_TOKEN }} | freighter login ghcr.io -u ${{ github.repository_owner }} --password-stdin
 
-      - name: Remove Hauler Store Credentials
+      - name: Remove Freighter Store Credentials
         run: |
           rm -rf ~/.docker/config.json
 
-      - name: Verify - hauler store
+      - name: Verify - freighter store
         run: |
-          hauler store --help
+          freighter store --help
 
-      - name: Verify - hauler store add
+      - name: Verify - freighter store add
         run: |
-          hauler store add --help
+          freighter store add --help
 
-      - name: Verify - hauler store add chart
+      - name: Verify - freighter store add chart
         run: |
-          hauler store add chart --help
+          freighter store add chart --help
           # verify via helm repository
-          hauler store add chart rancher --repo https://releases.rancher.com/server-charts/stable
-          hauler store add chart rancher --repo https://releases.rancher.com/server-charts/stable --version 2.8.4
-          hauler store add chart rancher --repo https://releases.rancher.com/server-charts/stable --version 2.8.3 --verify
+          freighter store add chart rancher --repo https://releases.rancher.com/server-charts/stable
+          freighter store add chart rancher --repo https://releases.rancher.com/server-charts/stable --version 2.8.4
+          freighter store add chart rancher --repo https://releases.rancher.com/server-charts/stable --version 2.8.3 --verify
           # verify via oci helm repository
-          hauler store add chart hauler-helm --repo oci://ghcr.io/hauler-dev
-          hauler store add chart hauler-helm --repo oci://ghcr.io/hauler-dev --version 1.0.6
-          hauler store add chart hauler-helm --repo oci://ghcr.io/hauler-dev --version 1.0.4 --verify
+          freighter store add chart freighter-helm --repo oci://ghcr.io/freighter-dev
+          freighter store add chart freighter-helm --repo oci://ghcr.io/freighter-dev --version 1.0.6
+          freighter store add chart freighter-helm --repo oci://ghcr.io/freighter-dev --version 1.0.4 --verify
           # verify via local helm repository
           curl -sfOL https://github.com/rancherfederal/rancher-cluster-templates/releases/download/rancher-cluster-templates-0.5.2/rancher-cluster-templates-0.5.2.tgz
-          hauler store add chart rancher-cluster-templates-0.5.2.tgz --repo .
+          freighter store add chart rancher-cluster-templates-0.5.2.tgz --repo .
           curl -sfOL https://github.com/rancherfederal/rancher-cluster-templates/releases/download/rancher-cluster-templates-0.5.1/rancher-cluster-templates-0.5.1.tgz
-          hauler store add chart rancher-cluster-templates-0.5.1.tgz --repo . --version 0.5.1
+          freighter store add chart rancher-cluster-templates-0.5.1.tgz --repo . --version 0.5.1
           curl -sfOL https://github.com/rancherfederal/rancher-cluster-templates/releases/download/rancher-cluster-templates-0.5.0/rancher-cluster-templates-0.5.0.tgz
-          hauler store add chart rancher-cluster-templates-0.5.0.tgz --repo . --version 0.5.0 --verify
-          # verify via the hauler store contents
-          hauler store info
+          freighter store add chart rancher-cluster-templates-0.5.0.tgz --repo . --version 0.5.0 --verify
+          # verify via the freighter store contents
+          freighter store info
 
-      - name: Verify - hauler store add file
+      - name: Verify - freighter store add file
         run: |
-          hauler store add file --help
+          freighter store add file --help
           # verify via remote file
-          hauler store add file https://get.rke2.io/install.sh
-          hauler store add file https://get.rke2.io/install.sh --name rke2-install.sh
+          freighter store add file https://get.rke2.io/install.sh
+          freighter store add file https://get.rke2.io/install.sh --name rke2-install.sh
           # verify via local file
-          hauler store add file testdata/hauler-manifest.yaml
-          hauler store add file testdata/hauler-manifest.yaml --name hauler-manifest-local.yaml
-          # verify via the hauler store contents
-          hauler store info
+          freighter store add file testdata/freighter-manifest.yaml
+          freighter store add file testdata/freighter-manifest.yaml --name freighter-manifest-local.yaml
+          # verify via the freighter store contents
+          freighter store info
 
-      - name: Verify - hauler store add image
+      - name: Verify - freighter store add image
         run: |
-          hauler store add image --help
+          freighter store add image --help
           # verify via image reference
-          hauler store add image busybox
+          freighter store add image busybox
           # verify via image reference with version and platform
-          hauler store add image busybox:stable --platform linux/amd64
+          freighter store add image busybox:stable --platform linux/amd64
           # verify via image reference with full reference
-          hauler store add image gcr.io/distroless/base@sha256:7fa7445dfbebae4f4b7ab0e6ef99276e96075ae42584af6286ba080750d6dfe5
-          # verify via the hauler store contents
-          hauler store info
+          freighter store add image gcr.io/distroless/base@sha256:7fa7445dfbebae4f4b7ab0e6ef99276e96075ae42584af6286ba080750d6dfe5
+          # verify via the freighter store contents
+          freighter store info
 
-      - name: Verify - hauler store copy
+      - name: Verify - freighter store copy
         run: |
-          hauler store copy --help
+          freighter store copy --help
           # need more tests here
 
-      - name: Verify - hauler store extract
+      - name: Verify - freighter store extract
         run: |
-          hauler store extract --help
-          # verify via extracting hauler store content
-          hauler store extract hauler/hauler-manifest-local.yaml:latest
+          freighter store extract --help
+          # verify via extracting freighter store content
+          freighter store extract freighter/freighter-manifest-local.yaml:latest
           # view extracted content from store
-          cat hauler-manifest-local.yaml
+          cat freighter-manifest-local.yaml
 
-      - name: Verify - hauler store info
+      - name: Verify - freighter store info
         run: |
-          hauler store info --help
+          freighter store info --help
           # verify via table output
-          hauler store info --output table
+          freighter store info --output table
           # verify via json output
-          hauler store info --output json
+          freighter store info --output json
           # verify via filtered output (chart)
-          hauler store info --type chart
+          freighter store info --type chart
           # verify via filtered output (file)
-          hauler store info --type file
+          freighter store info --type file
           # verify via filtered output (image)
-          hauler store info --type image
+          freighter store info --type image
           # verify store directory structure
           tree -hC store
 
-      - name: Verify - hauler store save
+      - name: Verify - freighter store save
         run: |
-          hauler store save --help
+          freighter store save --help
           # verify via save
-          hauler store save
+          freighter store save
           # verify via save with filename
-          hauler store save --filename store.tar.zst
+          freighter store save --filename store.tar.zst
           # verify via save with filename and platform (amd64)
-          hauler store save --filename store-amd64.tar.zst --platform linux/amd64
+          freighter store save --filename store-amd64.tar.zst --platform linux/amd64
 
-      - name: Remove Hauler Store Contents
+      - name: Remove Freighter Store Contents
         run: |
           rm -rf store
-          hauler store info
+          freighter store info
 
-      - name: Verify - hauler store load
+      - name: Verify - freighter store load
         run: |
-          hauler store load --help
+          freighter store load --help
           # verify via load
-          hauler store load
+          freighter store load
           # verify via load with multiple files
-          hauler store load --filename haul.tar.zst --filename store.tar.zst
+          freighter store load --filename haul.tar.zst --filename store.tar.zst
           # verify via load with filename and temp directory
-          hauler store load --filename store.tar.zst --tempdir /opt
+          freighter store load --filename store.tar.zst --tempdir /opt
           # verify via load with filename and platform (amd64)
-          hauler store load --filename store-amd64.tar.zst
+          freighter store load --filename store-amd64.tar.zst
 
-      - name: Verify Hauler Store Contents
+      - name: Verify Freighter Store Contents
         run: |
           # verify store
-          hauler store info
+          freighter store info
           # verify store directory structure
           tree -hC store
 
@@ -249,70 +249,70 @@ jobs:
           # verify images
           docker images --all
 
-      - name: Remove Hauler Store Contents
+      - name: Remove Freighter Store Contents
         run: |
           rm -rf store haul.tar.zst store.tar.zst store-amd64.tar.zst
-          hauler store info
+          freighter store info
 
-      - name: Verify - hauler store sync
+      - name: Verify - freighter store sync
         run: |
-          hauler store sync --help
+          freighter store sync --help
           # download local helm repository
           curl -sfOL https://github.com/rancherfederal/rancher-cluster-templates/releases/download/rancher-cluster-templates-0.5.2/rancher-cluster-templates-0.5.2.tgz
           # verify via sync
-          hauler store sync --filename testdata/hauler-manifest-pipeline.yaml
+          freighter store sync --filename testdata/freighter-manifest-pipeline.yaml
           # verify via sync with multiple files
-          hauler store sync --filename testdata/hauler-manifest-pipeline.yaml --filename testdata/hauler-manifest.yaml
+          freighter store sync --filename testdata/freighter-manifest-pipeline.yaml --filename testdata/freighter-manifest.yaml
           # need more tests here
 
-      - name: Verify - hauler store serve
+      - name: Verify - freighter store serve
         run: |
-          hauler store serve --help
+          freighter store serve --help
 
-      - name: Verify - hauler store serve registry
+      - name: Verify - freighter store serve registry
         run: |
-          hauler store serve registry --help
+          freighter store serve registry --help
           # verify via registry
-          hauler store serve registry &
+          freighter store serve registry &
           until curl -sf http://localhost:5000/v2/_catalog; do : ; done
-          pkill -f "hauler store serve registry"
+          pkill -f "freighter store serve registry"
           # verify via registry with different port
-          hauler store serve registry --port 5001 &
+          freighter store serve registry --port 5001 &
           until curl -sf http://localhost:5001/v2/_catalog; do : ; done
-          pkill -f "hauler store serve registry --port 5001"
+          pkill -f "freighter store serve registry --port 5001"
           # verify via registry with different port and readonly
-          hauler store serve registry --port 5001 --readonly &
+          freighter store serve registry --port 5001 --readonly &
           until curl -sf http://localhost:5001/v2/_catalog; do : ; done
-          pkill -f "hauler store serve registry --port 5001 --readonly"
+          pkill -f "freighter store serve registry --port 5001 --readonly"
           # verify via registry with different port with readonly with tls
-          # hauler store serve registry --port 5001 --readonly --tls-cert testdata/certs/server-cert.crt --tls-key testdata/certs/server-cert.key &
+          # freighter store serve registry --port 5001 --readonly --tls-cert testdata/certs/server-cert.crt --tls-key testdata/certs/server-cert.key &
           # until curl -sf --cacert testdata/certs/cacerts.pem https://localhost:5001/v2/_catalog; do : ; done
-          # pkill -f "hauler store serve registry --port 5001 --readonly --tls-cert testdata/certs/server-cert.crt --tls-key testdata/certs/server-cert.key"
+          # pkill -f "freighter store serve registry --port 5001 --readonly --tls-cert testdata/certs/server-cert.crt --tls-key testdata/certs/server-cert.key"
 
-      - name: Verify - hauler store serve fileserver
+      - name: Verify - freighter store serve fileserver
         run: |
-          hauler store serve fileserver --help
+          freighter store serve fileserver --help
           # verify via fileserver
-          hauler store serve fileserver &
+          freighter store serve fileserver &
           until curl -sf http://localhost:8080; do : ; done
-          pkill -f "hauler store serve fileserver"
+          pkill -f "freighter store serve fileserver"
           # verify via fileserver with different port
-          hauler store serve fileserver --port 8000 &
+          freighter store serve fileserver --port 8000 &
           until curl -sf http://localhost:8000; do : ; done
-          pkill -f "hauler store serve fileserver --port 8000"
+          pkill -f "freighter store serve fileserver --port 8000"
           # verify via fileserver with different port and timeout
-          hauler store serve fileserver --port 8000 --timeout 120 &
+          freighter store serve fileserver --port 8000 --timeout 120 &
           until curl -sf http://localhost:8000; do : ; done
-          pkill -f "hauler store serve fileserver --port 8000 --timeout 120"
+          pkill -f "freighter store serve fileserver --port 8000 --timeout 120"
           # verify via fileserver with different port with timeout and tls
-          # hauler store serve fileserver --port 8000 --timeout 120 --tls-cert testdata/certs/server-cert.crt --tls-key testdata/certs/server-cert.key &
+          # freighter store serve fileserver --port 8000 --timeout 120 --tls-cert testdata/certs/server-cert.crt --tls-key testdata/certs/server-cert.key &
           # until curl -sf --cacert testdata/certs/cacerts.pem https://localhost:8000; do : ; done
-          # pkill -f "hauler store serve fileserver --port 8000 --timeout 120 --tls-cert testdata/certs/server-cert.crt --tls-key testdata/certs/server-cert.key"
+          # pkill -f "freighter store serve fileserver --port 8000 --timeout 120 --tls-cert testdata/certs/server-cert.crt --tls-key testdata/certs/server-cert.key"
 
-      - name: Verify Hauler Store Contents
+      - name: Verify Freighter Store Contents
         run: |
           # verify store
-          hauler store info
+          freighter store info
           # verify store directory structure
           tree -hC store
           # verify registry directory structure
@@ -320,18 +320,18 @@ jobs:
           # verify fileserver directory structure
           tree -hC fileserver
 
-      - name: Create Hauler Report
+      - name: Create Freighter Report
         run: |
-          hauler version >> hauler-report.txt
-          hauler store info --output table >> hauler-report.txt
+          freighter version >> freighter-report.txt
+          freighter store info --output table >> freighter-report.txt
 
-      - name: Remove Hauler Store Contents
+      - name: Remove Freighter Store Contents
         run: |
           rm -rf store registry fileserver
-          hauler store info
+          freighter store info
 
-      - name: Upload Hauler Report
+      - name: Upload Freighter Report
         uses: actions/upload-artifact@v4
         with:
-          name: hauler-report
-          path: hauler-report.txt
+          name: freighter-report
+          path: freighter-report.txt

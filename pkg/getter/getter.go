@@ -11,9 +11,9 @@ import (
 	"github.com/pkg/errors"
 	"oras.land/oras-go/pkg/content"
 
-	content2 "hauler.dev/go/hauler/pkg/artifacts"
-	"hauler.dev/go/hauler/pkg/consts"
-	"hauler.dev/go/hauler/pkg/layer"
+	content2 "freighter.dev/go/freighter/pkg/artifacts"
+	"freighter.dev/go/freighter/pkg/consts"
+	"freighter.dev/go/freighter/pkg/layer"
 )
 
 type Client struct {

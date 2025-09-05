@@ -1,4 +1,4 @@
-# Makefile for hauler
+# Makefile for freighter
 
 # set shell
 SHELL=/bin/bash
@@ -11,17 +11,17 @@ GO_COVERPROFILE=coverage.out
 BIN_DIRECTORY=bin
 DIST_DIRECTORY=dist
 
-# local build of hauler for current platform
+# local build of freighter for current platform
 # references/configuration from .goreleaser.yaml
 build:
 	goreleaser build --clean --snapshot --timeout 60m --single-target
 
-# local build of hauler for all platforms
+# local build of freighter for all platforms
 # references/configuration from .goreleaser.yaml
 build-all:
 	goreleaser build --clean --snapshot --timeout 60m
 
-# local release of hauler for all platforms
+# local release of freighter for all platforms
 # references/configuration from .goreleaser.yaml
 release:
 	goreleaser release --clean --snapshot --timeout 60m

@@ -10,10 +10,10 @@ import (
 	"github.com/olekukonko/tablewriter"
 	ocispec "github.com/opencontainers/image-spec/specs-go/v1"
 
-	"hauler.dev/go/hauler/internal/flags"
-	"hauler.dev/go/hauler/pkg/consts"
-	"hauler.dev/go/hauler/pkg/reference"
-	"hauler.dev/go/hauler/pkg/store"
+	"freighter.dev/go/freighter/internal/flags"
+	"freighter.dev/go/freighter/pkg/consts"
+	"freighter.dev/go/freighter/pkg/reference"
+	"freighter.dev/go/freighter/pkg/store"
 )
 
 func InfoCmd(ctx context.Context, o *flags.InfoOpts, s *store.Layout) error {

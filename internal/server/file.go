@@ -7,10 +7,10 @@ import (
 	"os"
 	"time"
 
+	"freighter.dev/go/freighter/internal/flags"
+	"freighter.dev/go/freighter/pkg/consts"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
-	"hauler.dev/go/hauler/internal/flags"
-	"hauler.dev/go/hauler/pkg/consts"
 )
 
 // NewFile returns a fileserver

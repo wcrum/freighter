@@ -1,8 +1,8 @@
 # v1 manifests
-apiVersion: content.hauler.cattle.io/v1
+apiVersion: content.freighter.cattle.io/v1
 kind: Images
 metadata:
-  name: hauler-content-images-example
+  name: freighter-content-images-example
 spec:
   images:
     - name: busybox
@@ -10,33 +10,33 @@ spec:
       platform: linux/amd64
     - name: gcr.io/distroless/base@sha256:7fa7445dfbebae4f4b7ab0e6ef99276e96075ae42584af6286ba080750d6dfe5
 ---
-apiVersion: content.hauler.cattle.io/v1
+apiVersion: content.freighter.cattle.io/v1
 kind: Charts
 metadata:
-  name: hauler-content-charts-example
+  name: freighter-content-charts-example
 spec:
   charts:
     - name: rancher
       repoURL: https://releases.rancher.com/server-charts/stable
       version: 2.8.5
-    - name: hauler-helm
-      repoURL: oci://ghcr.io/hauler-dev
+    - name: freighter-helm
+      repoURL: oci://ghcr.io/freighter-dev
 ---
-apiVersion: content.hauler.cattle.io/v1
+apiVersion: content.freighter.cattle.io/v1
 kind: Files
 metadata:
-  name: hauler-content-files-example
+  name: freighter-content-files-example
 spec:
   files:
     - path: https://get.rke2.io
       name: install.sh
-    - path: testdata/hauler-manifest.yaml
+    - path: testdata/freighter-manifest.yaml
 ---
 # v1alpha1 manifests
-apiVersion: content.hauler.cattle.io/v1alpha1
+apiVersion: content.freighter.cattle.io/v1alpha1
 kind: Images
 metadata:
-  name: hauler-content-images-example
+  name: freighter-content-images-example
 spec:
   images:
     - name: busybox
@@ -44,24 +44,24 @@ spec:
       platform: linux/amd64
     - name: gcr.io/distroless/base@sha256:7fa7445dfbebae4f4b7ab0e6ef99276e96075ae42584af6286ba080750d6dfe5
 ---
-apiVersion: content.hauler.cattle.io/v1alpha1
+apiVersion: content.freighter.cattle.io/v1alpha1
 kind: Charts
 metadata:
-  name: hauler-content-charts-example
+  name: freighter-content-charts-example
 spec:
   charts:
     - name: rancher
       repoURL: https://releases.rancher.com/server-charts/stable
       version: 2.8.5
-    - name: hauler-helm
-      repoURL: oci://ghcr.io/hauler-dev
+    - name: freighter-helm
+      repoURL: oci://ghcr.io/freighter-dev
 ---
-apiVersion: content.hauler.cattle.io/v1alpha1
+apiVersion: content.freighter.cattle.io/v1alpha1
 kind: Files
 metadata:
-  name: hauler-content-files-example
+  name: freighter-content-files-example
 spec:
   files:
     - path: https://get.rke2.io
       name: install.sh
-    - path: testdata/hauler-manifest.yaml
+    - path: testdata/freighter-manifest.yaml

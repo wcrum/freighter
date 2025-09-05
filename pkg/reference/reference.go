@@ -9,7 +9,7 @@ import (
 
 	gname "github.com/google/go-containerregistry/pkg/name"
 
-	"hauler.dev/go/hauler/pkg/consts"
+	"freighter.dev/go/freighter/pkg/consts"
 )
 
 type Reference interface {

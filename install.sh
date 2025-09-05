@@ -6,32 +6,32 @@
 #
 # Install Usage:
 #   Install Latest Release
-#     - curl -sfL https://get.hauler.dev | bash
+#     - curl -sfL https://get.freighter.dev | bash
 #     - ./install.sh
 #
 #   Install Specific Release
-#     - curl -sfL https://get.hauler.dev | HAULER_VERSION=1.0.0 bash
+#     - curl -sfL https://get.freighter.dev | HAULER_VERSION=1.0.0 bash
 #     - HAULER_VERSION=1.0.0 ./install.sh
 #
 #   Set Install Directory
-#     - curl -sfL https://get.hauler.dev | HAULER_INSTALL_DIR=/usr/local/bin bash
+#     - curl -sfL https://get.freighter.dev | HAULER_INSTALL_DIR=/usr/local/bin bash
 #     - HAULER_INSTALL_DIR=/usr/local/bin ./install.sh
 #
-#   Set Hauler Directory
-#     - curl -sfL https://get.hauler.dev | HAULER_DIR=$HOME/.hauler bash
-#     - HAULER_DIR=$HOME/.hauler ./install.sh
+#   Set Freighter Directory
+#     - curl -sfL https://get.freighter.dev | HAULER_DIR=$HOME/.freighter bash
+#     - HAULER_DIR=$HOME/.freighter ./install.sh
 #
 # Debug Usage:
-#   - curl -sfL https://get.hauler.dev | HAULER_DEBUG=true bash
+#   - curl -sfL https://get.freighter.dev | HAULER_DEBUG=true bash
 #   - HAULER_DEBUG=true ./install.sh
 #
 # Uninstall Usage:
-#   - curl -sfL https://get.hauler.dev | HAULER_UNINSTALL=true bash
+#   - curl -sfL https://get.freighter.dev | HAULER_UNINSTALL=true bash
 #   - HAULER_UNINSTALL=true ./install.sh
 #
 # Documentation:
-#   - https://hauler.dev
-#   - https://github.com/hauler-dev/hauler
+#   - https://freighter.dev
+#   - https://github.com/freighter-dev/freighter
 
 # set functions for logging
 function verbose {
@@ -39,30 +39,30 @@ function verbose {
 }
 
 function info {
-    echo && echo "[INFO] Hauler: $1"
+    echo && echo "[INFO] Freighter: $1"
 }
 
 function warn {
-    echo && echo "[WARN] Hauler: $1"
+    echo && echo "[WARN] Freighter: $1"
 }
 
 function fatal {
-    echo && echo "[ERROR] Hauler: $1"
+    echo && echo "[ERROR] Freighter: $1"
     exit 1
 }
 
-# debug hauler from argument or environment variable
+# debug freighter from argument or environment variable
 if [ "${HAULER_DEBUG}" = "true" ]; then
     set -x
 fi
 
-# start hauler preflight checks
+# start freighter preflight checks
 info "Starting Preflight Checks..."
 
 # check for required packages and dependencies
 for cmd in echo curl grep sed rm mkdir awk openssl tar install source; do
     if ! command -v "$cmd" &> /dev/null; then
-        fatal "$cmd is required to install Hauler"
+        fatal "$cmd is required to install Freighter"
     fi
 done
 
@@ -77,26 +77,26 @@ fi
 # ensure install directory is writable (by user or root privileges)
 if [ ! -w "${HAULER_INSTALL_DIR}" ]; then
     if [ "$(id -u)" -ne 0 ]; then
-        fatal "Root privileges are required to install Hauler to Directory: ${HAULER_INSTALL_DIR}"
+        fatal "Root privileges are required to install Freighter to Directory: ${HAULER_INSTALL_DIR}"
     fi
 fi
 
-# uninstall hauler from argument or environment variable
+# uninstall freighter from argument or environment variable
 if [ "${HAULER_UNINSTALL}" = "true" ]; then
-    # remove the hauler binary
-    rm -rf "${HAULER_INSTALL_DIR}/hauler" || fatal "Failed to Remove Hauler from ${HAULER_INSTALL_DIR}"
+    # remove the freighter binary
+    rm -rf "${HAULER_INSTALL_DIR}/freighter" || fatal "Failed to Remove Freighter from ${HAULER_INSTALL_DIR}"
 
-    # remove the hauler directory
-    rm -rf "${HAULER_DIR}" || fatal "Failed to Remove Hauler Directory: ${HAULER_DIR}"
+    # remove the freighter directory
+    rm -rf "${HAULER_DIR}" || fatal "Failed to Remove Freighter Directory: ${HAULER_DIR}"
 
-    info "Successfully Uninstalled Hauler" && echo
+    info "Successfully Uninstalled Freighter" && echo
     exit 0
 fi
 
 # set version environment variable
 if [ -z "${HAULER_VERSION}" ]; then
     # attempt to retrieve the latest version from GitHub
-    HAULER_VERSION=$(curl -sI https://github.com/hauler-dev/hauler/releases/latest | grep -i location | sed -e 's#.*tag/v##' -e 's/^[[:space:]]*//g' -e 's/[[:space:]]*$//g')
+    HAULER_VERSION=$(curl -sI https://github.com/freighter-dev/freighter/releases/latest | grep -i location | sed -e 's#.*tag/v##' -e 's/^[[:space:]]*//g' -e 's/[[:space:]]*$//g')
 
     # exit if the version could not be detected
     if [ -z "${HAULER_VERSION}" ]; then
@@ -132,10 +132,10 @@ case $ARCH in
         ;;
 esac
 
-# set hauler directory from argument or environment variable
-HAULER_DIR=${HAULER_DIR:-$HOME/.hauler}
+# set freighter directory from argument or environment variable
+HAULER_DIR=${HAULER_DIR:-$HOME/.freighter}
 
-# start hauler installation
+# start freighter installation
 info "Starting Installation..."
 
 # display the version, platform, and architecture
@@ -143,58 +143,58 @@ verbose "- Version: v${HAULER_VERSION}"
 verbose "- Platform: ${PLATFORM}"
 verbose "- Architecture: ${ARCH}"
 verbose "- Install Directory: ${HAULER_INSTALL_DIR}"
-verbose "- Hauler Directory: ${HAULER_DIR}"
+verbose "- Freighter Directory: ${HAULER_DIR}"
 
-# ensure hauler directory exists and/or create it
+# ensure freighter directory exists and/or create it
 if [ ! -d "${HAULER_DIR}" ]; then
-    mkdir -p "${HAULER_DIR}" || fatal "Failed to Create Hauler Directory: ${HAULER_DIR}"
+    mkdir -p "${HAULER_DIR}" || fatal "Failed to Create Freighter Directory: ${HAULER_DIR}"
 fi
 
-# ensure hauler directory is writable (by user or root privileges)
-chmod -R 777 "${HAULER_DIR}" || fatal "Failed to Update Permissions of Hauler Directory: ${HAULER_DIR}"
+# ensure freighter directory is writable (by user or root privileges)
+chmod -R 777 "${HAULER_DIR}" || fatal "Failed to Update Permissions of Freighter Directory: ${HAULER_DIR}"
 
-# change to hauler directory
-cd "${HAULER_DIR}" || fatal "Failed to Change Directory to Hauler Directory: ${HAULER_DIR}"
+# change to freighter directory
+cd "${HAULER_DIR}" || fatal "Failed to Change Directory to Freighter Directory: ${HAULER_DIR}"
 
-# start hauler artifacts download
+# start freighter artifacts download
 info "Starting Download..."
 
 # download the checksum file
-if ! curl -sfOL "https://github.com/hauler-dev/hauler/releases/download/v${HAULER_VERSION}/hauler_${HAULER_VERSION}_checksums.txt"; then
-    fatal "Failed to Download: hauler_${HAULER_VERSION}_checksums.txt"
+if ! curl -sfOL "https://github.com/freighter-dev/freighter/releases/download/v${HAULER_VERSION}/freighter_${HAULER_VERSION}_checksums.txt"; then
+    fatal "Failed to Download: freighter_${HAULER_VERSION}_checksums.txt"
 fi
 
 # download the archive file
-if ! curl -sfOL "https://github.com/hauler-dev/hauler/releases/download/v${HAULER_VERSION}/hauler_${HAULER_VERSION}_${PLATFORM}_${ARCH}.tar.gz"; then
-    fatal "Failed to Download: hauler_${HAULER_VERSION}_${PLATFORM}_${ARCH}.tar.gz"
+if ! curl -sfOL "https://github.com/freighter-dev/freighter/releases/download/v${HAULER_VERSION}/freighter_${HAULER_VERSION}_${PLATFORM}_${ARCH}.tar.gz"; then
+    fatal "Failed to Download: freighter_${HAULER_VERSION}_${PLATFORM}_${ARCH}.tar.gz"
 fi
 
-# start hauler checksum verification
+# start freighter checksum verification
 info "Starting Checksum Verification..."
 
-# verify the Hauler checksum
-EXPECTED_CHECKSUM=$(awk -v HAULER_VERSION="${HAULER_VERSION}" -v PLATFORM="${PLATFORM}" -v ARCH="${ARCH}" '$2 == "hauler_"HAULER_VERSION"_"PLATFORM"_"ARCH".tar.gz" {print $1}' "hauler_${HAULER_VERSION}_checksums.txt")
-DETERMINED_CHECKSUM=$(openssl dgst -sha256 "hauler_${HAULER_VERSION}_${PLATFORM}_${ARCH}.tar.gz" | awk '{print $2}')
+# verify the Freighter checksum
+EXPECTED_CHECKSUM=$(awk -v HAULER_VERSION="${HAULER_VERSION}" -v PLATFORM="${PLATFORM}" -v ARCH="${ARCH}" '$2 == "freighter_"HAULER_VERSION"_"PLATFORM"_"ARCH".tar.gz" {print $1}' "freighter_${HAULER_VERSION}_checksums.txt")
+DETERMINED_CHECKSUM=$(openssl dgst -sha256 "freighter_${HAULER_VERSION}_${PLATFORM}_${ARCH}.tar.gz" | awk '{print $2}')
 
 if [ -z "${EXPECTED_CHECKSUM}" ]; then
-    fatal "Failed to Locate Checksum: hauler_${HAULER_VERSION}_${PLATFORM}_${ARCH}.tar.gz"
+    fatal "Failed to Locate Checksum: freighter_${HAULER_VERSION}_${PLATFORM}_${ARCH}.tar.gz"
 elif [ "${DETERMINED_CHECKSUM}" = "${EXPECTED_CHECKSUM}" ]; then
     verbose "- Expected Checksum: ${EXPECTED_CHECKSUM}"
     verbose "- Determined Checksum: ${DETERMINED_CHECKSUM}"
-    verbose "- Successfully Verified Checksum: hauler_${HAULER_VERSION}_${PLATFORM}_${ARCH}.tar.gz"
+    verbose "- Successfully Verified Checksum: freighter_${HAULER_VERSION}_${PLATFORM}_${ARCH}.tar.gz"
 else
     verbose "- Expected: ${EXPECTED_CHECKSUM}"
     verbose "- Determined: ${DETERMINED_CHECKSUM}"
-    fatal "Failed Checksum Verification: hauler_${HAULER_VERSION}_${PLATFORM}_${ARCH}.tar.gz"
+    fatal "Failed Checksum Verification: freighter_${HAULER_VERSION}_${PLATFORM}_${ARCH}.tar.gz"
 fi
 
-# uncompress the hauler archive
-tar -xzf "hauler_${HAULER_VERSION}_${PLATFORM}_${ARCH}.tar.gz" || fatal "Failed to Extract: hauler_${HAULER_VERSION}_${PLATFORM}_${ARCH}.tar.gz"
+# uncompress the freighter archive
+tar -xzf "freighter_${HAULER_VERSION}_${PLATFORM}_${ARCH}.tar.gz" || fatal "Failed to Extract: freighter_${HAULER_VERSION}_${PLATFORM}_${ARCH}.tar.gz"
 
-# install the hauler binary
-install -m 755 hauler "${HAULER_INSTALL_DIR}" || fatal "Failed to Install Hauler: ${HAULER_INSTALL_DIR}"
+# install the freighter binary
+install -m 755 freighter "${HAULER_INSTALL_DIR}" || fatal "Failed to Install Freighter: ${HAULER_INSTALL_DIR}"
 
-# add hauler to the path
+# add freighter to the path
 if [[ ":$PATH:" != *":${HAULER_INSTALL_DIR}:"* ]]; then
     if [ -f "$HOME/.bashrc" ]; then
         echo "export PATH=\$PATH:${HAULER_INSTALL_DIR}" >> "$HOME/.bashrc"
@@ -214,10 +214,10 @@ if [[ ":$PATH:" != *":${HAULER_INSTALL_DIR}:"* ]]; then
 fi
 
 # display success message
-info "Successfully Installed Hauler at ${HAULER_INSTALL_DIR}/hauler"
+info "Successfully Installed Freighter at ${HAULER_INSTALL_DIR}/freighter"
 
 # display availability message
-info "Hauler v${HAULER_VERSION} is now available for use!"
+info "Freighter v${HAULER_VERSION} is now available for use!"
 
-# display hauler docs message
-verbose "- Documentation: https://hauler.dev" && echo
+# display freighter docs message
+verbose "- Documentation: https://freighter.dev" && echo

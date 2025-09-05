@@ -6,6 +6,7 @@ import (
 	"io"
 	"strings"
 
+	v1 "freighter.dev/go/freighter/pkg/apis/hauler.cattle.io/v1"
 	"helm.sh/helm/v3/pkg/action"
 	helmchart "helm.sh/helm/v3/pkg/chart"
 	"helm.sh/helm/v3/pkg/chartutil"
@@ -14,8 +15,6 @@ import (
 	"helm.sh/helm/v3/pkg/storage/driver"
 	"k8s.io/apimachinery/pkg/util/yaml"
 	"k8s.io/client-go/util/jsonpath"
-
-	"hauler.dev/go/hauler/pkg/apis/hauler.cattle.io/v1"
 )
 
 var defaultKnownImagePaths = []string{

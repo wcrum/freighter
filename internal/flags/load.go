@@ -1,8 +1,8 @@
 package flags
 
 import (
+	"freighter.dev/go/freighter/pkg/consts"
 	"github.com/spf13/cobra"
-	"hauler.dev/go/hauler/pkg/consts"
 )
 
 type LoadOpts struct {
@@ -16,6 +16,6 @@ func (o *LoadOpts) AddFlags(cmd *cobra.Command) {
 
 	// On Unix systems, the default is $TMPDIR if non-empty, else /tmp
 	// On Windows, the default is GetTempPath, returning the first value from %TMP%, %TEMP%, %USERPROFILE%, or Windows directory
-	f.StringSliceVarP(&o.FileName, "filename", "f", []string{consts.DefaultHaulerArchiveName}, "(Optional) Specify the name of inputted haul(s)")
+	f.StringSliceVarP(&o.FileName, "filename", "f", []string{consts.DefaultFreighterArchiveName}, "(Optional) Specify the name of inputted haul(s)")
 	f.StringVarP(&o.TempOverride, "tempdir", "t", "", "(Optional) Override the default temporary directiory determined by the OS")
 }

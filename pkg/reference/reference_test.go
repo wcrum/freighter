@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"hauler.dev/go/hauler/pkg/reference"
+	"freighter.dev/go/freighter/pkg/reference"
 )
 
 func TestParse(t *testing.T) {
@@ -18,11 +18,11 @@ func TestParse(t *testing.T) {
 		wantErr bool
 	}{
 		{
-			name: "Should add hauler namespace when doesn't exist",
+			name: "Should add freighter namespace when doesn't exist",
 			args: args{
 				ref: "myfile",
 			},
-			want:    "hauler/myfile:latest",
+			want:    "freighter/myfile:latest",
 			wantErr: false,
 		},
 		{

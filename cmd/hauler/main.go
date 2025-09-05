@@ -4,9 +4,9 @@ import (
 	"context"
 	"os"
 
-	"hauler.dev/go/hauler/cmd/hauler/cli"
-	"hauler.dev/go/hauler/internal/flags"
-	"hauler.dev/go/hauler/pkg/log"
+	"freighter.dev/go/freighter/cmd/freighter/cli"
+	"freighter.dev/go/freighter/internal/flags"
+	"freighter.dev/go/freighter/pkg/log"
 )
 
 func main() {

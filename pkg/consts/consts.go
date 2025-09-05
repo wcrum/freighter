@@ -19,43 +19,43 @@ const (
 	ProvLayerMediaType   = "application/vnd.cncf.helm.chart.provenance.v1.prov"
 
 	// file media types
-	FileLayerMediaType           = "application/vnd.content.hauler.file.layer.v1"
-	FileLocalConfigMediaType     = "application/vnd.content.hauler.file.local.config.v1+json"
-	FileDirectoryConfigMediaType = "application/vnd.content.hauler.file.directory.config.v1+json"
-	FileHttpConfigMediaType      = "application/vnd.content.hauler.file.http.config.v1+json"
+	FileLayerMediaType           = "application/vnd.content.freighter.file.layer.v1"
+	FileLocalConfigMediaType     = "application/vnd.content.freighter.file.local.config.v1+json"
+	FileDirectoryConfigMediaType = "application/vnd.content.freighter.file.directory.config.v1+json"
+	FileHttpConfigMediaType      = "application/vnd.content.freighter.file.http.config.v1+json"
 
 	// memory media types
-	MemoryConfigMediaType = "application/vnd.content.hauler.memory.config.v1+json"
+	MemoryConfigMediaType = "application/vnd.content.freighter.memory.config.v1+json"
 
 	// wasm media types
 	WasmArtifactLayerMediaType = "application/vnd.wasm.content.layer.v1+wasm"
 	WasmConfigMediaType        = "application/vnd.wasm.config.v1+json"
 
 	// unknown media types
-	UnknownManifest = "application/vnd.hauler.cattle.io.unknown.v1+json"
-	UnknownLayer    = "application/vnd.content.hauler.unknown.layer"
+	UnknownManifest = "application/vnd.freighter.cattle.io.unknown.v1+json"
+	UnknownLayer    = "application/vnd.content.freighter.unknown.layer"
 	Unknown         = "unknown"
 
 	// vendor prefixes
-	OCIVendorPrefix    = "vnd.oci"
-	DockerVendorPrefix = "vnd.docker"
-	HaulerVendorPrefix = "vnd.hauler"
+	OCIVendorPrefix       = "vnd.oci"
+	DockerVendorPrefix    = "vnd.docker"
+	FreighterVendorPrefix = "vnd.freighter"
 
 	// annotation keys
 	KindAnnotationName      = "kind"
 	KindAnnotationImage     = "dev.cosignproject.cosign/image"
 	KindAnnotationIndex     = "dev.cosignproject.cosign/imageIndex"
-	ImageAnnotationKey      = "hauler.dev/key"
-	ImageAnnotationPlatform = "hauler.dev/platform"
-	ImageAnnotationRegistry = "hauler.dev/registry"
-	ImageAnnotationTlog     = "hauler.dev/use-tlog-verify"
+	ImageAnnotationKey      = "freighter.dev/key"
+	ImageAnnotationPlatform = "freighter.dev/platform"
+	ImageAnnotationRegistry = "freighter.dev/registry"
+	ImageAnnotationTlog     = "freighter.dev/use-tlog-verify"
 
 	// cosign keyless validation options
-	ImageAnnotationCertIdentity                 = "hauler.dev/certificate-identity"
-	ImageAnnotationCertIdentityRegexp           = "hauler.dev/certificate-identity-regexp"
-	ImageAnnotationCertOidcIssuer               = "hauler.dev/certificate-oidc-issuer"
-	ImageAnnotationCertOidcIssuerRegexp         = "hauler.dev/certificate-oidc-issuer-regexp"
-	ImageAnnotationCertGithubWorkflowRepository = "hauler.dev/certificate-github-workflow-repository"
+	ImageAnnotationCertIdentity                 = "freighter.dev/certificate-identity"
+	ImageAnnotationCertIdentityRegexp           = "freighter.dev/certificate-identity-regexp"
+	ImageAnnotationCertOidcIssuer               = "freighter.dev/certificate-oidc-issuer"
+	ImageAnnotationCertOidcIssuerRegexp         = "freighter.dev/certificate-oidc-issuer-regexp"
+	ImageAnnotationCertGithubWorkflowRepository = "freighter.dev/certificate-github-workflow-repository"
 
 	// content kinds
 	ImagesContentKind    = "Images"
@@ -66,34 +66,34 @@ const (
 	ChartsCollectionKind = "ThickCharts"
 
 	// content groups
-	ContentGroup    = "content.hauler.cattle.io"
-	CollectionGroup = "collection.hauler.cattle.io"
+	ContentGroup    = "content.freighter.cattle.io"
+	CollectionGroup = "collection.freighter.cattle.io"
 
 	// environment variables
-	HaulerDir          = "HAULER_DIR"
-	HaulerTempDir      = "HAULER_TEMP_DIR"
-	HaulerStoreDir     = "HAULER_STORE_DIR"
-	HaulerIgnoreErrors = "HAULER_IGNORE_ERRORS"
+	FreighterDir          = "HAULER_DIR"
+	FreighterTempDir      = "HAULER_TEMP_DIR"
+	FreighterStoreDir     = "HAULER_STORE_DIR"
+	FreighterIgnoreErrors = "HAULER_IGNORE_ERRORS"
 
 	// container files and directories
 	ImageManifestFile = "manifest.json"
 	ImageConfigFile   = "config.json"
 
 	// other constraints
-	CarbideRegistry           = "rgcrprod.azurecr.us"
-	DefaultNamespace          = "hauler"
-	DefaultTag                = "latest"
-	DefaultStoreName          = "store"
-	DefaultHaulerDirName      = ".hauler"
-	DefaultHaulerTempDirName  = "hauler"
-	DefaultRegistryRootDir    = "registry"
-	DefaultRegistryPort       = 5000
-	DefaultFileserverRootDir  = "fileserver"
-	DefaultFileserverPort     = 8080
-	DefaultFileserverTimeout  = 60
-	DefaultHaulerArchiveName  = "haul.tar.zst"
-	DefaultHaulerManifestName = "hauler-manifest.yaml"
-	DefaultRetries            = 3
-	RetriesInterval           = 5
-	CustomTimeFormat          = "2006-01-02 15:04:05"
+	CarbideRegistry              = "rgcrprod.azurecr.us"
+	DefaultNamespace             = "freighter"
+	DefaultTag                   = "latest"
+	DefaultStoreName             = "store"
+	DefaultFreighterDirName      = ".freighter"
+	DefaultFreighterTempDirName  = "freighter"
+	DefaultRegistryRootDir       = "registry"
+	DefaultRegistryPort          = 5000
+	DefaultFileserverRootDir     = "fileserver"
+	DefaultFileserverPort        = 8080
+	DefaultFileserverTimeout     = 60
+	DefaultFreighterArchiveName  = "haul.tar.zst"
+	DefaultFreighterManifestName = "freighter-manifest.yaml"
+	DefaultRetries               = 3
+	RetriesInterval              = 5
+	CustomTimeFormat             = "2006-01-02 15:04:05"
 )

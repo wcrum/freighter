@@ -7,16 +7,16 @@ import (
 	"github.com/google/go-containerregistry/pkg/name"
 	"helm.sh/helm/v3/pkg/action"
 
-	"hauler.dev/go/hauler/internal/flags"
-	v1 "hauler.dev/go/hauler/pkg/apis/hauler.cattle.io/v1"
-	"hauler.dev/go/hauler/pkg/artifacts/file"
-	"hauler.dev/go/hauler/pkg/consts"
-	"hauler.dev/go/hauler/pkg/content/chart"
-	"hauler.dev/go/hauler/pkg/cosign"
-	"hauler.dev/go/hauler/pkg/getter"
-	"hauler.dev/go/hauler/pkg/log"
-	"hauler.dev/go/hauler/pkg/reference"
-	"hauler.dev/go/hauler/pkg/store"
+	"freighter.dev/go/freighter/internal/flags"
+	v1 "freighter.dev/go/freighter/pkg/apis/freighter.cattle.io/v1"
+	"freighter.dev/go/freighter/pkg/artifacts/file"
+	"freighter.dev/go/freighter/pkg/consts"
+	"freighter.dev/go/freighter/pkg/content/chart"
+	"freighter.dev/go/freighter/pkg/cosign"
+	"freighter.dev/go/freighter/pkg/getter"
+	"freighter.dev/go/freighter/pkg/log"
+	"freighter.dev/go/freighter/pkg/reference"
+	"freighter.dev/go/freighter/pkg/store"
 )
 
 func AddFileCmd(ctx context.Context, o *flags.AddFileOpts, s *store.Layout, reference string) error {
@@ -85,7 +85,7 @@ func storeImage(ctx context.Context, s *store.Layout, i v1.Image, platform strin
 	l := log.FromContext(ctx)
 
 	if !ro.IgnoreErrors {
-		envVar := os.Getenv(consts.HaulerIgnoreErrors)
+		envVar := os.Getenv(consts.FreighterIgnoreErrors)
 		if envVar == "true" {
 			ro.IgnoreErrors = true
 		}

@@ -7,14 +7,14 @@ import (
 	"strings"
 	"time"
 
+	"freighter.dev/go/freighter/internal/flags"
+	"freighter.dev/go/freighter/pkg/artifacts/image"
+	"freighter.dev/go/freighter/pkg/consts"
+	"freighter.dev/go/freighter/pkg/log"
+	"freighter.dev/go/freighter/pkg/store"
 	"github.com/sigstore/cosign/v2/cmd/cosign/cli"
 	"github.com/sigstore/cosign/v2/cmd/cosign/cli/options"
 	"github.com/sigstore/cosign/v2/cmd/cosign/cli/verify"
-	"hauler.dev/go/hauler/internal/flags"
-	"hauler.dev/go/hauler/pkg/artifacts/image"
-	"hauler.dev/go/hauler/pkg/consts"
-	"hauler.dev/go/hauler/pkg/log"
-	"hauler.dev/go/hauler/pkg/store"
 	"oras.land/oras-go/pkg/content"
 )
 
@@ -87,7 +87,7 @@ func SaveImage(ctx context.Context, s *store.Layout, ref string, platform string
 	l := log.FromContext(ctx)
 
 	if !ro.IgnoreErrors {
-		envVar := os.Getenv(consts.HaulerIgnoreErrors)
+		envVar := os.Getenv(consts.FreighterIgnoreErrors)
 		if envVar == "true" {
 			ro.IgnoreErrors = true
 		}
@@ -167,7 +167,7 @@ func RetryOperation(ctx context.Context, rso *flags.StoreRootOpts, ro *flags.Cli
 	l := log.FromContext(ctx)
 
 	if !ro.IgnoreErrors {
-		envVar := os.Getenv(consts.HaulerIgnoreErrors)
+		envVar := os.Getenv(consts.FreighterIgnoreErrors)
 		if envVar == "true" {
 			ro.IgnoreErrors = true
 		}

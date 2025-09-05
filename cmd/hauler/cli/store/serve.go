@@ -15,10 +15,10 @@ import (
 	"github.com/distribution/distribution/v3/version"
 	"gopkg.in/yaml.v3"
 
-	"hauler.dev/go/hauler/internal/flags"
-	"hauler.dev/go/hauler/internal/server"
-	"hauler.dev/go/hauler/pkg/log"
-	"hauler.dev/go/hauler/pkg/store"
+	"freighter.dev/go/freighter/internal/flags"
+	"freighter.dev/go/freighter/internal/server"
+	"freighter.dev/go/freighter/pkg/log"
+	"freighter.dev/go/freighter/pkg/store"
 )
 
 func DefaultRegistryConfig(o *flags.ServeRegistryOpts, rso *flags.StoreRootOpts, ro *flags.CliRootOpts) *configuration.Configuration {

@@ -6,8 +6,8 @@ import (
 	"os"
 	"path/filepath"
 
+	"freighter.dev/go/freighter/pkg/log"
 	"github.com/mholt/archives"
-	"hauler.dev/go/hauler/pkg/log"
 )
 
 // maps to handle compression types

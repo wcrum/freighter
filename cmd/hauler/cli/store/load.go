@@ -8,13 +8,13 @@ import (
 	"path/filepath"
 	"strings"
 
-	"hauler.dev/go/hauler/internal/flags"
-	"hauler.dev/go/hauler/pkg/archives"
-	"hauler.dev/go/hauler/pkg/consts"
-	"hauler.dev/go/hauler/pkg/content"
-	"hauler.dev/go/hauler/pkg/getter"
-	"hauler.dev/go/hauler/pkg/log"
-	"hauler.dev/go/hauler/pkg/store"
+	"freighter.dev/go/freighter/internal/flags"
+	"freighter.dev/go/freighter/pkg/archives"
+	"freighter.dev/go/freighter/pkg/consts"
+	"freighter.dev/go/freighter/pkg/content"
+	"freighter.dev/go/freighter/pkg/getter"
+	"freighter.dev/go/freighter/pkg/log"
+	"freighter.dev/go/freighter/pkg/store"
 )
 
 // extracts the contents of an archived oci layout to an existing oci layout
@@ -24,10 +24,10 @@ func LoadCmd(ctx context.Context, o *flags.LoadOpts, rso *flags.StoreRootOpts, r
 	tempOverride := o.TempOverride
 
 	if tempOverride == "" {
-		tempOverride = os.Getenv(consts.HaulerTempDir)
+		tempOverride = os.Getenv(consts.FreighterTempDir)
 	}
 
-	tempDir, err := os.MkdirTemp(tempOverride, consts.DefaultHaulerTempDirName)
+	tempDir, err := os.MkdirTemp(tempOverride, consts.DefaultFreighterTempDirName)
 	if err != nil {
 		return err
 	}

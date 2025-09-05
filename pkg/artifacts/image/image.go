@@ -2,12 +2,13 @@ package image
 
 import (
 	"fmt"
+
 	"github.com/google/go-containerregistry/pkg/authn"
 	gname "github.com/google/go-containerregistry/pkg/name"
 	gv1 "github.com/google/go-containerregistry/pkg/v1"
 	"github.com/google/go-containerregistry/pkg/v1/remote"
 
-	"hauler.dev/go/hauler/pkg/artifacts"
+	"freighter.dev/go/freighter/pkg/artifacts"
 )
 
 var _ artifacts.OCI = (*Image)(nil)

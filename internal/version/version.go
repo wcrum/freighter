@@ -27,8 +27,8 @@ import (
 	"text/tabwriter"
 	"time"
 
+	"freighter.dev/go/freighter/pkg/consts"
 	"github.com/common-nighthawk/go-figure"
-	"hauler.dev/go/hauler/pkg/consts"
 )
 
 // Base version information.

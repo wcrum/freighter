@@ -15,16 +15,16 @@ type CopyOpts struct {
 func (o *CopyOpts) AddFlags(cmd *cobra.Command) {
 	f := cmd.Flags()
 
-	f.StringVarP(&o.Username, "username", "u", "", "(Deprecated) Please use 'hauler login'")
-	f.StringVarP(&o.Password, "password", "p", "", "(Deprecated) Please use 'hauler login'")
+	f.StringVarP(&o.Username, "username", "u", "", "(Deprecated) Please use 'freighter login'")
+	f.StringVarP(&o.Password, "password", "p", "", "(Deprecated) Please use 'freighter login'")
 	f.BoolVar(&o.Insecure, "insecure", false, "(Optional) Allow insecure connections")
 	f.BoolVar(&o.PlainHTTP, "plain-http", false, "(Optional) Allow plain HTTP connections")
 	f.StringVarP(&o.Only, "only", "o", "", "(Optional) Custom string array to only copy specific 'image' items")
 
-	if err := f.MarkDeprecated("username", "please use 'hauler login'"); err != nil {
+	if err := f.MarkDeprecated("username", "please use 'freighter login'"); err != nil {
 		panic(err)
 	}
-	if err := f.MarkDeprecated("password", "please use 'hauler login'"); err != nil {
+	if err := f.MarkDeprecated("password", "please use 'freighter login'"); err != nil {
 		panic(err)
 	}
 	if err := f.MarkHidden("username"); err != nil {

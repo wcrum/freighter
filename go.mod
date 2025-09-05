@@ -1,8 +1,8 @@
-module hauler.dev/go/hauler
+module freighter.dev/go/freighter
 
 go 1.24.5
 
-replace github.com/sigstore/cosign/v2 => github.com/hauler-dev/cosign/v2 v2.4.3-0.20250404165522-3a44ef646a65
+replace github.com/sigstore/cosign/v2 => github.com/freighter-dev/cosign/v2 v2.4.3-0.20250404165522-3a44ef646a65
 
 replace github.com/distribution/distribution/v3 => github.com/distribution/distribution/v3 v3.0.0-20221208165359-362910506bc2
 

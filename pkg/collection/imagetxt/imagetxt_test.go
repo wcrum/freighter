@@ -8,8 +8,8 @@ import (
 	"os"
 	"testing"
 
-	"hauler.dev/go/hauler/pkg/artifacts"
-	"hauler.dev/go/hauler/pkg/artifacts/image"
+	"freighter.dev/go/freighter/pkg/artifacts"
+	"freighter.dev/go/freighter/pkg/artifacts/image"
 )
 
 var (
