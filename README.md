@@ -1,63 +1,68 @@
-# Rancher Government Hauler
-
-![rancher-government-hauler-logo](/static/rgs-hauler-logo.png)
+# Freighter
 
 ## Airgap Swiss Army Knife
 
-`Rancher Government Hauler` simplifies the airgap experience without requiring operators to adopt a specific workflow. **Hauler** simplifies the airgapping process, by representing assets (images, charts, files, etc...) as content and collections to allow operators to easily fetch, store, package, and distribute these assets with declarative manifests or through the command line.
+`Freighter` is a **community fork of [Rancher Government Hauler](https://hauler.dev)**, created and maintained by [William Crum](https://github.com/wcrum).  
 
-`Hauler` does this by storing contents and collections as OCI Artifacts and allows operators to serve contents and collections with an embedded registry and fileserver. Additionally, `Hauler` has the ability to store and inspect various non-image OCI Artifacts.
+This project continues the mission of **simplifying the airgap experience** without requiring operators to adopt a specific workflow.  
+Like its upstream, `Freighter` represents assets (images, charts, files, etc.) as content and collections, allowing operators to easily fetch, store, package, and distribute them with declarative manifests or through the command line.
 
-For more information, please review the **[Hauler Documentation](https://hauler.dev)!**
+### Disclaimer
+This is an **independent fork** of the original [Hauler](https://hauler.dev) project.  
+It is **not affiliated with, endorsed by, or sponsored by Rancher Government Solutions or the original Hauler maintainers**.  
+
+---
+
+## How Freighter Works
+
+`Freighter` builds on Hauler’s foundation by:
+
+- Storing contents and collections as **OCI Artifacts**.  
+- Serving contents and collections with an **embedded registry and fileserver**.  
+- Supporting inspection and storage of various **non-image OCI Artifacts**.  
+
+---
 
 ## Recent Changes
 
-### In Hauler v1.2.0...
+This fork starts from **Hauler v1.2.0** and introduces ongoing modifications by William Crum.  
+Please refer to [CHANGELOG.md](./CHANGELOG.md) for specific differences between `Freighter` and upstream `Hauler`.
 
-- Upgraded the `apiVersion` to `v1` from `v1alpha1`
-  - Users are able to use `v1` and `v1alpha1`, but `v1alpha1` is now deprecated and will be removed in a future release. We will update the community when we fully deprecate and remove the functionality of `v1alpha1`
-  - Users will see logging notices when using the old `apiVersion` such as...
-  - `!!! DEPRECATION WARNING !!! apiVersion [v1alpha1] will be removed in a future release !!! DEPRECATION WARNING !!!`
+### Inherited from Hauler v1.2.0:
+
+- **API version upgrade** from `v1alpha1` to `v1`.  
+  - `v1alpha1` is now deprecated and will be removed in a future release.  
+  - Logging notices are displayed when using `v1alpha1`, e.g.:  
+    ```
+    !!! DEPRECATION WARNING !!! apiVersion [v1alpha1] will be removed in a future release !!! DEPRECATION WARNING !!!
+    ```
 ---
-- Updated the behavior of `hauler store load` to default to loading a `haul` with the name of `haul.tar.zst` and requires the flag of `--filename/-f` to load a `haul` with a different name
-- Users can load multiple `hauls` by specifying multiple flags of `--filename/-f`
-  - updated command usage: `hauler store load --filename hauling-hauls.tar.zst`
-  - previous command usage (do not use): `hauler store load hauling-hauls.tar.zst`
+- Updated behavior of `store load`:  
+  - Defaults to loading a `haul` with the name `haul.tar.zst`.  
+  - Requires `--filename/-f` to load a haul with a different name.  
+  - Supports multiple hauls with multiple flags.  
+  - Example:  
+    ```bash
+    freighter store load --filename hauling-hauls.tar.zst
+    ```
 ---
-- Updated the behavior of `hauler store sync` to default to syncing a `manifest` with the name of `hauler-manifest.yaml` and requires the flag of `--filename/-f` to sync a `manifest` with a different name
-- Users can sync multiple `manifests` by specifying multiple flags of `--filename/-f`
-  - updated command usage: `hauler store sync --filename hauling-hauls-manifest.yaml`
-  - previous command usage (do not use): `hauler store sync --files hauling-hauls-manifest.yaml`
+- Updated behavior of `store sync`:  
+  - Defaults to syncing a `manifest` named `hauler-manifest.yaml`.  
+  - Requires `--filename/-f` to sync other manifest names.  
+  - Supports multiple manifests with multiple flags.  
+  - Example:  
+    ```bash
+    freighter store sync --filename hauling-hauls-manifest.yaml
+    ```
 ---
-Please review the documentation for any additional [Known Limits, Issues, and Notices](https://docs.hauler.dev/docs/known-limits)!
+For known limits, issues, and notices, see the [upstream Hauler documentation](https://docs.hauler.dev/docs/known-limits).  
+Freighter-specific changes will be tracked separately.
+
+---
 
 ## Installation
 
-### Linux/Darwin
+## License & Notices
+- This project includes code from Rancher Government Hauler, licensed under the Apache License 2.0.
+- See NOTICE for required attributions from upstream.
 
-```bash
-# installs latest release
-curl -sfL https://get.hauler.dev | bash
-```
-
-### Homebrew
-
-```bash
-# installs latest release
-brew tap hauler-dev/homebrew-tap
-brew install hauler
-```
-
-### Windows
-
-```bash
-# coming soon
-```
-
-## Acknowledgements
-
-`Hauler` wouldn't be possible without the open-source community, but there are a few projects that stand out:
-
-- [oras cli](https://github.com/oras-project/oras)
-- [cosign](https://github.com/sigstore/cosign)
-- [go-containerregistry](https://github.com/google/go-containerregistry)
