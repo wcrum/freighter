@@ -3,8 +3,8 @@ package v1alpha1
 import (
 	"fmt"
 
-	v1 "freighter.dev/go/freighter/pkg/apis/freighter.cattle.io/v1"
-	v1alpha1 "freighter.dev/go/freighter/pkg/apis/freighter.cattle.io/v1alpha1"
+	v1 "freighter.dev/go/freighter/pkg/apis/freighter.dev/v1"
+	v1alpha1 "freighter.dev/go/freighter/pkg/apis/freighter.dev/v1alpha1"
 )
 
 // converts v1alpha1.Files -> v1.Files

@@ -8,7 +8,7 @@ import (
 	"helm.sh/helm/v3/pkg/action"
 
 	"freighter.dev/go/freighter/internal/flags"
-	v1 "freighter.dev/go/freighter/pkg/apis/freighter.cattle.io/v1"
+	v1 "freighter.dev/go/freighter/pkg/apis/freighter.dev/v1"
 	"freighter.dev/go/freighter/pkg/artifacts/file"
 	"freighter.dev/go/freighter/pkg/consts"
 	"freighter.dev/go/freighter/pkg/content/chart"

@@ -70,10 +70,10 @@ const (
 	CollectionGroup = "collection.freighter.cattle.io"
 
 	// environment variables
-	FreighterDir          = "HAULER_DIR"
-	FreighterTempDir      = "HAULER_TEMP_DIR"
-	FreighterStoreDir     = "HAULER_STORE_DIR"
-	FreighterIgnoreErrors = "HAULER_IGNORE_ERRORS"
+	FreighterDir          = "FREIGHTER_DIR"
+	FreighterTempDir      = "FREIGHTER_TEMP_DIR"
+	FreighterStoreDir     = "FREIGHTER_STORE_DIR"
+	FreighterIgnoreErrors = "FREIGHTER_IGNORE_ERRORS"
 
 	// container files and directories
 	ImageManifestFile = "manifest.json"

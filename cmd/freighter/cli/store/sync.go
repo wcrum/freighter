@@ -15,9 +15,9 @@ import (
 	"k8s.io/apimachinery/pkg/util/yaml"
 
 	"freighter.dev/go/freighter/internal/flags"
-	convert "freighter.dev/go/freighter/pkg/apis/freighter.cattle.io/convert"
-	v1 "freighter.dev/go/freighter/pkg/apis/freighter.cattle.io/v1"
-	v1alpha1 "freighter.dev/go/freighter/pkg/apis/freighter.cattle.io/v1alpha1"
+	convert "freighter.dev/go/freighter/pkg/apis/freighter.dev/convert"
+	v1 "freighter.dev/go/freighter/pkg/apis/freighter.dev/v1"
+	v1alpha1 "freighter.dev/go/freighter/pkg/apis/freighter.dev/v1alpha1"
 	tchart "freighter.dev/go/freighter/pkg/collection/chart"
 	"freighter.dev/go/freighter/pkg/collection/imagetxt"
 	"freighter.dev/go/freighter/pkg/consts"

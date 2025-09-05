@@ -80,9 +80,9 @@ dockers:
       - "--platform=linux/amd64"
       - "--target=debug"
     image_templates:
-      - "docker.io/hauler/hauler-debug-amd64:{{ .Version }}"
-      - "ghcr.io/hauler-dev/hauler-debug-amd64:{{ .Version }}"
-  - id: hauler-debug-arm64
+      - "docker.io/freighter/freighter-debug-amd64:{{ .Version }}"
+      - "ghcr.io/freighter-dev/freighter-debug-amd64:{{ .Version }}"
+  - id: freighter-debug-arm64
     goos: linux
     goarch: arm64
     use: buildx
@@ -91,31 +91,31 @@ dockers:
       - "--platform=linux/arm64"
       - "--target=debug"
     image_templates:
-      - "docker.io/hauler/hauler-debug-arm64:{{ .Version }}"
-      - "ghcr.io/hauler-dev/hauler-debug-arm64:{{ .Version }}"
+      - "docker.io/freighter/freighter-debug-arm64:{{ .Version }}"
+      - "ghcr.io/freighter-dev/freighter-debug-arm64:{{ .Version }}"
 
 docker_manifests:
-  - id: hauler-docker
+  - id: freighter-docker
     use: docker
-    name_template: "docker.io/hauler/hauler:{{ .Version }}"
+    name_template: "docker.io/freighter/freighter:{{ .Version }}"
     image_templates:
-      - "docker.io/hauler/hauler-amd64:{{ .Version }}"
-      - "docker.io/hauler/hauler-arm64:{{ .Version }}"
-  - id: hauler-ghcr
+      - "docker.io/freighter/freighter-amd64:{{ .Version }}"
+      - "docker.io/freighter/freighter-arm64:{{ .Version }}"
+  - id: freighter-ghcr
     use: docker
-    name_template: "ghcr.io/hauler-dev/hauler:{{ .Version }}"
+    name_template: "ghcr.io/freighter-dev/freighter:{{ .Version }}"
     image_templates:
-      - "ghcr.io/hauler-dev/hauler-amd64:{{ .Version }}"
-      - "ghcr.io/hauler-dev/hauler-arm64:{{ .Version }}"
-  - id: hauler-debug-docker
+      - "ghcr.io/freighter-dev/freighter-amd64:{{ .Version }}"
+      - "ghcr.io/freighter-dev/freighter-arm64:{{ .Version }}"
+  - id: freighter-debug-docker
     use: docker
-    name_template: "docker.io/hauler/hauler-debug:{{ .Version }}"
+    name_template: "docker.io/freighter/freighter-debug:{{ .Version }}"
     image_templates:
-      - "docker.io/hauler/hauler-debug-amd64:{{ .Version }}"
-      - "docker.io/hauler/hauler-debug-arm64:{{ .Version }}"
-  - id: hauler-debug-ghcr
+      - "docker.io/freighter/freighter-debug-amd64:{{ .Version }}"
+      - "docker.io/freighter/freighter-debug-arm64:{{ .Version }}"
+  - id: freighter-debug-ghcr
     use: docker
-    name_template: "ghcr.io/hauler-dev/hauler-debug:{{ .Version }}"
+    name_template: "ghcr.io/freighter-dev/freighter-debug:{{ .Version }}"
     image_templates:
-      - "ghcr.io/hauler-dev/hauler-debug-amd64:{{ .Version }}"
-      - "ghcr.io/hauler-dev/hauler-debug-arm64:{{ .Version }}"
+      - "ghcr.io/freighter-dev/freighter-debug-amd64:{{ .Version }}"
+      - "ghcr.io/freighter-dev/freighter-debug-arm64:{{ .Version }}"

@@ -3,7 +3,7 @@ package chart
 import (
 	"helm.sh/helm/v3/pkg/action"
 
-	v1 "freighter.dev/go/freighter/pkg/apis/hauler.cattle.io/v1"
+	v1 "freighter.dev/go/freighter/pkg/apis/freighter.dev/v1"
 	"freighter.dev/go/freighter/pkg/artifacts"
 	"freighter.dev/go/freighter/pkg/artifacts/image"
 	"freighter.dev/go/freighter/pkg/content/chart"

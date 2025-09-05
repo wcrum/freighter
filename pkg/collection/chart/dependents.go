@@ -6,7 +6,7 @@ import (
 	"io"
 	"strings"
 
-	v1 "freighter.dev/go/freighter/pkg/apis/hauler.cattle.io/v1"
+	v1 "freighter.dev/go/freighter/pkg/apis/freighter.dev/v1"
 	"helm.sh/helm/v3/pkg/action"
 	helmchart "helm.sh/helm/v3/pkg/chart"
 	"helm.sh/helm/v3/pkg/chartutil"
