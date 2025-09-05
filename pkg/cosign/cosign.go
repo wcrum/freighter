@@ -105,10 +105,10 @@ func SaveImage(ctx context.Context, s *store.Layout, ref string, platform string
 		}
 		l.Debugf("multi-arch image [%v]", isMultiArch)
 
-		// Note: Platform support removed in newer cosign versions
-		// Platform filtering is now handled differently in cosign v2.5.3+
+		// Conditionally add platform.
 		if platform != "" && isMultiArch {
-			l.Debugf("platform for image [%s] - note: platform filtering not supported in current cosign version", platform)
+			l.Debugf("platform for image [%s]", platform)
+			o.Platform = platform
 		}
 
 		err = cli.SaveCmd(ctx, *o, ref)
@@ -129,16 +129,14 @@ func LoadImages(ctx context.Context, s *store.Layout, registry string, only stri
 
 	o := &options.LoadOptions{
 		Directory: s.Root,
-		Registry:  options.RegistryOptions{
-			// Note: Name field removed in newer cosign versions
-			// Registry is now specified as part of the command arguments
+		Registry: options.RegistryOptions{
+			Name: registry,
 		},
 	}
 
-	// Note: LoadOnly field removed in newer cosign versions
-	// Filtering is now handled differently in cosign v2.5.3+
+	// Conditionally add extra flags.
 	if len(only) > 0 {
-		l.Debugf("load only filter [%s] - note: filtering not supported in current cosign version", only)
+		o.LoadOnly = only
 	}
 
 	if ropts.Insecure {
@@ -156,7 +154,7 @@ func LoadImages(ctx context.Context, s *store.Layout, registry string, only stri
 
 	// execute the cosign load and capture the output in our logger
 	err := log.CaptureOutput(l, false, func() error {
-		return cli.LoadCmd(ctx, *o, registry)
+		return cli.LoadCmd(ctx, *o, "")
 	})
 	if err != nil {
 		return err
