@@ -1,4 +1,4 @@
-version: 2
+version: 1
 
 project_name: freighter
 before:
@@ -18,7 +18,8 @@ env:
   - cosign_version=v2.2.3+carbide.3
 
 builds:
-  - dir: ./cmd/freighter/.
+  - id: freighter
+    dir: ./cmd/freighter/.
     goos:
       - linux
       - darwin
@@ -30,7 +31,23 @@ builds:
       - -s -w -X {{ .Env.vpkg }}.gitVersion={{ .Version }} -X {{ .Env.vpkg }}.gitCommit={{ .ShortCommit }} -X {{ .Env.vpkg }}.gitTreeState={{if .IsGitDirty}}dirty{{else}}clean{{end}} -X {{ .Env.vpkg }}.buildDate={{ .Date }}
     env:
       - CGO_ENABLED=0
-      - GOEXPERIMENT=boringcrypto
+  - id: freighter-fips
+    dir: ./cmd/freighter/.
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w -X {{ .Env.vpkg }}.gitVersion={{ .Version }} -X {{ .Env.vpkg }}.gitCommit={{ .ShortCommit }} -X {{ .Env.vpkg }}.gitTreeState={{if .IsGitDirty}}dirty{{else}}clean{{end}} -X {{ .Env.vpkg }}.buildDate={{ .Date }}
+    env:
+      - CGO_ENABLED=0
+      - GOFIPS140=v1.0.0
+    binary: freighter-fips
+    tags:
+      - fips140
 
 universal_binaries:
   - replace: false
